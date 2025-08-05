@@ -1,165 +1,283 @@
-SWAPP Chatbot Backend
-<div align="center"> <img src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white" alt="NestJS"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"> <img src="https://img.shields.io/badge/Wit.ai-000000?style=for-the-badge&logo=wit.ai&logoColor=white" alt="Wit.ai"> <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js"> </div>
-Description
-A backend service for the SWAPP project's customer support chatbot. It uses NestJS and the free NLP API from Wit.ai to handle natural language interactions and provide automated support responses.
+# SWAPP Chatbot Backend
 
-Project Objective
-This backend service aims to:
+<div align="center">
+  <img src="https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white" alt="NestJS">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Wit.ai-000000?style=for-the-badge&logo=wit.ai&logoColor=white" alt="Wit.ai">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js">
+</div>
 
-Provide smart, automated responses to user queries using AI (via Wit.ai)
+## Description
 
-Serve as an API endpoint for frontend chat interface integration
+A backend service for the SWAPP project's customer support chatbot. Built with NestJS and integrated with Wit.ai's, it provides intelligent natural language processing capabilities for automated customer support responses.
 
-Help users with frequently asked questions about the SWAPP system
+## Project Objectives
 
-Offer a scalable and secure structure for future enhancements
+This backend service is designed to:
 
-Technical Architecture
-Technologies Used
-NestJS – Scalable Node.js framework
+- **Intelligent Response System**: Provide smart, AI-powered responses to user queries through Wit.ai integration
+- **API Integration**: Serve as a robust API endpoint for frontend chat interface integration
+- **FAQ Automation**: Handle frequently asked questions about the SWAPP system efficiently
+- **Scalable Architecture**: Offer a secure and scalable foundation for future feature enhancements
 
-TypeScript – Type-safe development
+## Technical Architecture
 
-Wit.ai – Free NLP engine to process natural language
+### Technologies Used
 
-Axios – For API requests to Wit.ai
+- **NestJS** – Scalable Node.js framework for building efficient server-side applications
+- **TypeScript** – Type-safe development with enhanced code quality
+- **Wit.ai** – Free natural language processing engine for intent recognition
+- **Axios** – HTTP client for API requests to Wit.ai
+- **Node.js** – JavaScript runtime environment
 
-Node.js – Runtime environment
+### Project Structure
 
-File Structure
-bash
-Copier
-Modifier
+```
 /swapp-chatbot-backend/
 │
 ├── src/
 │   ├── chatbot/
-│   │   ├── chatbot.controller.ts     # API endpoints
-│   │   ├── chatbot.service.ts        # Business logic
-│   │   └── chatbot.module.ts         # Module definition
-│   ├── app.module.ts                 # Main app module
-│   └── main.ts                       # App entry point
+│   │   ├── chatbot.controller.ts     # API endpoints and request handling
+│   │   ├── chatbot.service.ts        # Business logic and Wit.ai integration
+│   │   └── chatbot.module.ts         # Module configuration
+│   ├── app.module.ts                 # Root application module
+│   └── main.ts                       # Application entry point
 │
 ├── .env                              # Environment variables (WIT_API_TOKEN)
-├── package.json
-└── README.md
-Architecture Diagrams
-System Overview
-<img width="1000" alt="System Diagram" src="https://github.com/user-attachments/assets/27fd40dc-7121-47cb-b435-72e9e94dbd82" />
-Installation
-Prerequisites
-Node.js (v18+ recommended)
+├── .env.example                      # Environment variables template
+├── package.json                      # Project dependencies and scripts
+├── nest-cli.json                     # NestJS CLI configuration
+├── tsconfig.json                     # TypeScript configuration
+└── README.md                         # Project documentation
+```
 
-npm or yarn
+### System Architecture
 
-A Wit.ai account and app (for your NLP integration)
+![System Diagram](https://github.com/user-attachments/assets/27fd40dc-7121-47cb-b435-72e9e94dbd82)
 
-Local Installation
-bash
-Copier
-Modifier
-# Clone the project
+*Architecture overview showing the interaction between frontend clients, NestJS backend, and Wit.ai NLP service*
+
+## Installation & Setup
+
+### Prerequisites
+
+- **Node.js** (v18 or higher recommended)
+- **npm** or **yarn** package manager
+- **Wit.ai account** with a configured app for NLP processing
+
+### Local Development Setup
+
+```bash
+# Clone the repository
 git clone https://github.com/Yan739/swapp-chatbot-backend.git
 
-# Navigate to the folder
+# Navigate to the project directory
 cd swapp-chatbot-backend
 
 # Install dependencies
 npm install
 
-# Run the application
+# Copy environment template
+cp .env.example .env
+
+# Configure your environment variables (see Configuration section)
+# Edit .env file with your Wit.ai token
+
+# Start the development server
 npm run start:dev
-Configuration
-Environment Variables
-Create a .env file at the root of the project and add your Wit.ai Server Access Token:
+```
 
-env
-Copier
-Modifier
-WIT_API_TOKEN=Bearer YOUR_WIT_AI_TOKEN_HERE
-Update chatbot.service.ts to use this token dynamically if needed.
+### Configuration
 
-Features
-Current
-API endpoint to query chatbot: GET /chatbot/ask?q=your_question
+#### Environment Variables
 
-Integration with Wit.ai for intent recognition
+Create a `.env` file in the project root and configure the following variables:
 
-Predefined responses based on top-level intents
+```env
+# Wit.ai Configuration
+WIT_API_TOKEN=Bearer YOUR_WIT_AI_SERVER_ACCESS_TOKEN
 
-Upcoming
-Integration with SWAPP user data
+# Application Configuration
+PORT=3000
+NODE_ENV=development
 
-Save conversation history
+# CORS Configuration (optional)
+CORS_ORIGIN=http://localhost:3001
+```
 
-User authentication & rate limiting
+> **Important**: Never commit your `.env` file to version control. Use `.env.example` as a template.
 
-Admin dashboard to monitor and train intents
+#### Wit.ai Setup
 
-Usage
-Start the server: npm run start:dev
+1. Create a free account at [Wit.ai](https://wit.ai)
+2. Create a new app for your chatbot
+3. Train your app with intents and entities relevant to SWAPP
+4. Copy your Server Access Token to the `.env` file
 
-Send a GET request to the chatbot API:
+## API Documentation
 
-bash
-Copier
-Modifier
-GET http://localhost:3000/chatbot/ask?q=Bonjour
-Receive a JSON response:
+### Endpoints
 
-json
-Copier
-Modifier
+#### Chat Query
+```http
+GET /chatbot/ask?q={your_question}
+```
+
+**Parameters:**
+- `q` (string, required): The user's question or message
+
+**Response Format:**
+```json
 {
-  "response": "Bonjour ! Comment puis-je vous aider ?"
+  "response": "AI-generated response based on the query",
+  "confidence": 0.95,
+  "intent": "greeting",
+  "entities": []
 }
-Development
-Recommended Tools
-VS Code with NestJS & ESLint extensions
+```
 
-Postman for testing API requests
+**Example Usage:**
+```bash
+# Example request
+curl "http://localhost:3000/chatbot/ask?q=Bonjour"
 
-Wit.ai dashboard to manage your NLP intents
+# Example response
+{
+  "response": "Bonjour ! Comment puis-je vous aider avec SWAPP aujourd'hui ?",
+  "confidence": 0.98,
+  "intent": "greeting"
+}
+```
 
-Scripts
-bash
-Copier
-Modifier
-npm run start:dev     # Run in dev mode
-npm run build         # Build for production
-npm run start         # Start compiled code
-Compatibility
-Node.js 18+
+## Features
 
-NestJS 10+
+### Current Features
+- RESTful API endpoint for chatbot queries
+- Wit.ai integration for natural language understanding
+- Intent-based response system
+- TypeScript implementation for type safety
+- Environment-based configuration
+- Error handling and logging
 
-Compatible with most frontend clients (React, Vue, Angular, etc.)
+### Upcoming Features
+- Integration with SWAPP user database
+- Conversation history persistence
+- User authentication and rate limiting
+- Admin dashboard for intent management
+- Multi-language support
+- Analytics and conversation insights
 
-Contributing
-Contributions are welcome! Here's how:
+## Development
 
-Fork the repository
+### Recommended Development Tools
+- **VS Code** with NestJS, TypeScript, and ESLint extensions
+- **Postman** or **Insomnia** for API testing
+- **Wit.ai Dashboard** for NLP model management
 
-Create a branch (git checkout -b feature/NewFeature)
+### Available Scripts
 
-Commit your changes (git commit -m 'Add NewFeature')
+```bash
+# Development
+npm run start:dev          # Start in development mode with hot reload
+npm run start:debug        # Start in debug mode
 
-Push to the branch (git push origin feature/NewFeature)
+# Production
+npm run build              # Build the application
+npm run start              # Start the compiled application
 
-Create a Pull Request
+# Testing
+npm run test               # Run unit tests
+npm run test:e2e           # Run end-to-end tests
+npm run test:cov           # Run tests with coverage
 
-Author
-Yann NGATEU
+# Code Quality
+npm run lint               # Run ESLint
+npm run format             # Format code with Prettier
+```
 
-Project developed as part of the SWAPP project – an intelligent solution for support and product management.
+### Testing
 
-Useful Links
-NestJS Documentation
+Run the test suite to ensure everything works correctly:
 
-Wit.ai Documentation
+```bash
+# Unit tests
+npm run test
 
-TypeScript Handbook
+# End-to-end tests
+npm run test:e2e
 
-Postman
+# Test coverage
+npm run test:cov
+```
 
-<div align="center"> Made with ❤️ by Yann NGATEU for the SWAPP Project </div>
+## Deployment
+
+### Production Build
+
+```bash
+# Build the application
+npm run build
+
+# Start in production mode
+npm run start:prod
+```
+
+### Environment Requirements
+- **Node.js** 18+
+- **NestJS** 10+
+- **Memory**: Minimum 512MB RAM
+- **Storage**: Minimum 100MB available space
+
+## Compatibility
+
+- **Backend Framework**: NestJS 10+
+- **Runtime**: Node.js 18+
+- **Frontend Compatibility**: Works with React, Vue, Angular, and other modern frameworks
+- **API Standard**: RESTful API following OpenAPI specifications
+
+## Contributing
+
+We welcome contributions to improve the SWAPP Chatbot Backend! Please follow these steps:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
+3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** to the branch (`git push origin feature/AmazingFeature`)
+5. **Open** a Pull Request
+
+### Development Guidelines
+- Follow TypeScript best practices
+- Write unit tests for new features
+- Update documentation for API changes
+- Follow the existing code style and conventions
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Author
+
+**Yann NGATEU**  
+*Full Stack Developer*
+
+Developed as part of the SWAPP project – an intelligent solution for support and product management.
+
+## Resources & Documentation
+
+- [NestJS Documentation](https://docs.nestjs.com/)
+- [Wit.ai Developer Documentation](https://wit.ai/docs)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [Postman Documentation](https://learning.postman.com/)
+
+## Support
+
+If you encounter any issues or have questions, please:
+1. Check the [Issues](https://github.com/Yan739/swapp-chatbot-backend/issues) page
+2. Create a new issue with detailed information
+3. Contact the development team
+
+---
+
+<div align="center">
+  <strong>Made with ❤️ by Yann NGATEU for the SWAPP Project</strong>
+</div>
