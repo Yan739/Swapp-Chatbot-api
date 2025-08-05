@@ -53,7 +53,8 @@ This backend service is designed to:
 
 ### System Architecture
 
-<img width="1000" alt="System Diagram" src="https://github.com/user-attachments/assets/27fd40dc-7121-47cb-b435-72e9e94dbd82" />
+<img width="480" height="313" alt="image" src="https://github.com/user-attachments/assets/2f33c805-a916-4c09-9a43-d65e72c52363" />
+
 
 *Architecture overview showing the interaction between frontend clients, NestJS backend, and Wit.ai NLP service*
 
